@@ -58,7 +58,7 @@ setup_requires = [
 
 install_requires = [
     #'flask-sso-saml>=0.1.0',
-    'flask-sso-saml @ git+https://github.com/mb-wali/flask-sso-saml@behind-loadbalancer'
+    'flask-sso-saml @ git+https://github.com/mb-wali/flask-sso-saml@behind-loadbalancer',
     'invenio-accounts>=1.1.1',
     # TODO: Remove once duplicated code gets integrated
     'uritools>=2.2.0',
