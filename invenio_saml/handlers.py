@@ -6,7 +6,7 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 """Default handlers for SSO-SAML."""
 
-from flask import abort, current_app
+from flask import abort, current_app, session
 from flask_login import current_user
 from flask_security import logout_user
 from invenio_db import db
@@ -45,6 +45,22 @@ def account_info(attributes, remote_app):
     email = attributes[mappings['email']][0]
     external_id = attributes[mappings['external_id']][0]
 
+    # custom attr
+    if 'org_id' in attributes and 'org_id' in mappings:
+        org_id = attributes[mappings['org_id']][0]
+        # set the value to the session
+        session['org_id'] = org_id
+
+    if 'org_name' in attributes and 'org_name' in mappings:
+        org_name =attributes[mappings['org_name']][0]
+        # set the value to the session
+        session['org_name'] = org_name
+
+    if 'identifier' in attributes and 'identifier' in mappings:
+        identifier = attributes[mappings['identifier']][0]
+        # set the value to the session
+        session['identifier'] = identifier
+        
     return dict(
         user=dict(
             email=email,
